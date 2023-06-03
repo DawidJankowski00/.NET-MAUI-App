@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    
+<Shell
+    x:Class="Food.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Food.Pages"
+    xmlns:startupPages="clr-namespace:Food.Pages.startup"
+    xmlns:local="clr-namespace:Food">
+
+    <ShellContent 
+        Shell.FlyoutBehavior="Disabled"
+        FlyoutItemIsVisible="False"
+        ContentTemplate="{DataTemplate startupPages:LoadingPage}"
+        Route="LoadingPage"/>
+    
+    <ShellContent 
+        Shell.FlyoutBehavior="Disabled"
+        FlyoutItemIsVisible="False"
+        Title="LoginPage"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Route="LoginPage"/>
+    <FlyoutItem
+        FlyoutItemIsVisible="True"
+        Title="Strona główna">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:MainPage}" 
+                          Title="Strona główna"/>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem
+        Title="Produkty">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:Products}" Title="Produkty"/>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem
+        Title="Ustawienia">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:Settings}" Title="Ustawienia"/>
+        </Tab>
+    </FlyoutItem>
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Button Text="Sign Out" Command="{Binding SignOutCommand}" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>
