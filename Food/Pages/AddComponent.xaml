@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Food.Pages.AddComponent"
+             xmlns:model="clr-namespace:Food.Model"
+             xmlns:viewmodel="clr-namespace:Food.ViewModel"
+             Title="AddComponent">
+    <VerticalStackLayout>
+        <CollectionView BackgroundColor="Transparent"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Components}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Component">
+                    <Grid Padding="10">
+                        <Frame  HeightRequest="30"
+                                WidthRequest="200"
+                                Padding="0"
+                                CornerRadius="10"
+                                Margin="10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddComponentViewModel}},Path=AddThisCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding Name}" FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Odswierz"
+                Command="{Binding GetComponentCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="8"></Button>
+    </VerticalStackLayout>
+</ContentPage>

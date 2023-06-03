@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Food.Pages.DetailsPage"
+             xmlns:model="clr-namespace:Food.Model"
+             xmlns:viewmodel="clr-namespace:Food.ViewModel"
+             x:DataType="viewmodel:ProductDetailsViewModel"
+             Title="{Binding Product.Name}">
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            <Grid ColumnDefinitions="*,*">
+                <Frame HeightRequest="160"
+                       WidthRequest="160"
+                       CornerRadius="10"
+                       HorizontalOptions="Start"
+                       Margin="10">
+                    <Image Source="{Binding Product.Image}"/>
+                </Frame>
+                <HorizontalStackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <VerticalStackLayout>
+                        <Image Source="{Binding Product.GetEmoteByRate}"
+                               HeightRequest="50"/>
+                        <Frame HeightRequest="10"
+                               WidthRequest="100"
+                               CornerRadius="10"
+                               Margin="0"
+                               Padding="0">
+                            <Label BackgroundColor="DarkCyan"
+                                   WidthRequest="{Binding Product.Rate}"
+                                   HeightRequest="20"
+                                   HorizontalOptions="Start"
+                                   />
+                        </Frame>
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Product.Rate}"/>
+                            <Label Text="/100"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                
+            </Grid>
+            <Label Text="{Binding Product.Description}"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   Margin="10"/>
+            <Button Text="Lokalizacja"
+                    Command="{Binding OpenMapCommand}"/>
+            <VerticalStackLayout Margin="10">
+                <Label Text="Wartości Odżywcze"
+                       FontSize="20"
+                       
+                       FontAttributes="Bold"/>
+                <HorizontalStackLayout>
+                    <Label Text="w 100"
+                       FontSize="13"/>
+                    <Label Text="{Binding Product.measured_in}"
+                       FontSize="13"/>
+                </HorizontalStackLayout>
+                
+                
+            </VerticalStackLayout>
+
+            
+
+            <Line Stroke="Black"
+                  StrokeThickness="4"
+                  X1="0" Y1="0"
+                  X2="200" Y2="0"/>
+
+
+            <Grid Margin="0,20,0,0"
+                  Padding="10">
+                <Image Source="{Binding Product.GetEmoteForCalories}" HeightRequest="20"/>
+                <Label Text="Kalorie"/>
+                <Label Text="{Binding Product.Calories}"
+                       HorizontalOptions="End"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+            </Grid>
+            <Line Stroke="Black"
+                  StrokeThickness="1"
+                  X1="0" Y1="0"
+                  X2="900" Y2="0"/>
+            <Grid Padding="10">
+                <Image Source="{Binding Product.GetEmoteForFat}" HeightRequest="20"/>
+                <Label Text="Tłuszcz"/>
+                <Label Text="{Binding Product.Fat}"
+                       HorizontalOptions="End"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+            </Grid>
+            <Line Stroke="Black"
+                  StrokeThickness="1"
+                  X1="0" Y1="0"
+                  X2="900" Y2="0"/>
+            
+            <Grid Padding="10">
+                <Image Source="{Binding Product.GetEmoteForCarbohydrates}" HeightRequest="20"/>
+                <Label Text="Węglowodany"/>
+                <Label Text="{Binding Product.Carbohydrates}"
+                       HorizontalOptions="End"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+            </Grid>
+            <Line Stroke="Black"
+                  StrokeThickness="1"
+                  X1="0" Y1="0"
+                  X2="900" Y2="0"/>
+            <Grid Padding="10">
+                <Image Source="{Binding Product.GetEmoteForSugar}" HeightRequest="20"/>
+                <Label Text="Cukier"/>
+                <Label Text="{Binding Product.Sugar}"
+                       HorizontalOptions="End"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+            </Grid>
+            <Line Stroke="Black"
+                  StrokeThickness="1"
+                  X1="0" Y1="0"
+                  X2="900" Y2="0"/>
+            <Grid Padding="10">
+                <Image Source="emote_none.png" HeightRequest="20"/>
+                <Label Text="Błonnik"/>
+                <Label Text="{Binding Product.Fiber}"
+                       HorizontalOptions="End"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+            </Grid>
+            <Line Stroke="Black"
+                  StrokeThickness="1"
+                  X1="0" Y1="0"
+                  X2="900" Y2="0"/>
+            <Grid Padding="10">
+                <Image Source="{Binding Product.GetEmoteForProtein}" HeightRequest="20"/>
+                <Label Text="Białko"/>
+                <Label Text="{Binding Product.Protein}"
+                       HorizontalOptions="End"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+            </Grid>
+            <Line Stroke="Black"
+                  StrokeThickness="1"
+                  X1="0" Y1="0"
+                  X2="900" Y2="0"/>
+            <Grid Padding="10">
+                <Image Source="{Binding Product.GetEmoteForSalt}" HeightRequest="20"/>
+                <Label Text="Sól"/>
+                <Label Text="{Binding Product.Salt}"
+                       HorizontalOptions="End"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+            </Grid>
+            <VerticalStackLayout Margin="10">
+                <Label Text="Składniki"
+                       FontSize="20"
+                       
+                       FontAttributes="Bold"/>
+            </VerticalStackLayout>
+            <CollectionView BackgroundColor="Transparent"
+                        ItemsSource="{Binding Product.Components}"
+                        SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Component">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="50"
+                                   Padding="5">
+                                <VerticalStackLayout Padding="10"
+                                                     VerticalOptions="Center"
+                                                     HorizontalOptions="Center">
+                                    <HorizontalStackLayout>
+                                        <Image Source="{Binding GetEmoteByRate}" HeightRequest="20"/>
+                                        <Label Text="{Binding Name}"
+                                           FontSize="17"
+                                           FontAttributes="Bold"/>
+                                        <Image Source="{Binding GetPicture}" HeightRequest="20"/>
+                                    </HorizontalStackLayout>
+
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+    
+</ContentPage>
