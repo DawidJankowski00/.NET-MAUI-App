@@ -15,7 +15,7 @@ namespace Food.Model
         public string Email { get; set; }
         public string Password { get; set; }
         public string Type { get; set; }
-        public List<Component> BadComponents { get; set; }
+        public List<Component> BadComponents { get; set; } = new List<Component>();
         public List<Product> OwnProducts { get; set; }
     }
 }

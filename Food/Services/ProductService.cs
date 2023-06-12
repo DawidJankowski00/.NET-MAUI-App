@@ -37,6 +37,7 @@ namespace Food.Services
 
         public async Task<bool> AddProduct(Product product)
         {
+
             var response = await _httpClient.PostAsJsonAsync("https://restapi20230501204309.azurewebsites.net/api/Products", product);
             if (response.IsSuccessStatusCode)
             {

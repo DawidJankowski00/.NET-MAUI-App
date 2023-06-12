@@ -3,100 +3,102 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Food.Pages.AddProduct"
              Title="AddProduct">
-    <VerticalStackLayout 
-            Spacing="25" 
-            Padding="30,0" 
-            VerticalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout 
+                Spacing="25" 
+                Padding="30,0" 
+                VerticalOptions="Center">
 
-        <Image Source="logo.png" HeightRequest="150" WidthRequest="150" />
+            <Image Source="logo.png" HeightRequest="150" WidthRequest="150" />
 
-        <VerticalStackLayout Spacing="5">
-            <Label Text="Wprowadź dane aby się dodać produkt" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" />
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Wprowadź dane aby się dodać produkt" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry  Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Nazwa produktu" Text="{Binding Name}"/>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry  Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Opis produktu" Text="{Binding Description}"/>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Lokalizacja produktu" Text="{Binding Location}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Rodzaj produktu" Text="{Binding ProductType}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Kalorie" Text="{Binding Calories}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość tłuszczu" Text="{Binding Fat}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość węglowodanów" Text="{Binding Carbohydrates}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość cukru" Text="{Binding Sugar}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość białka" Text="{Binding Fiber}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość błonnika" Text="{Binding Protein}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame  Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość soli" Text="{Binding Salt}" />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Frame  Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
+                    <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Link do zdjęcia" Text="{Binding Image}" />
+                </Frame>
+            </StackLayout>
+
+            <Button Text="Dodaj" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding AddProductCommand}"/>
         </VerticalStackLayout>
-
-        <StackLayout Orientation="Horizontal">
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry  Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Nazwa produktu" Text="{Binding Name}"/>
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry  Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Opis produktu" Text="{Binding description}"/>
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Lokalizacja produktu" Text="{Binding location}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Rodzaj produktu" Text="{Binding productType}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Kalorie" Text="{Binding calories}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość tłuszczu" Text="{Binding fat}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość węglowodanów" Text="{Binding carbohydrates}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość cukru" Text="{Binding sugar}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość białka" Text="{Binding fiber}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość błonnika" Text="{Binding protein}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame  Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Zawartość soli" Text="{Binding salt}" />
-            </Frame>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Frame  Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Link do zdjęcia" Text="{Binding image}" />
-            </Frame>
-        </StackLayout>
-
-        <Button Text="Dodaj" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding AddProductCommand}"/>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

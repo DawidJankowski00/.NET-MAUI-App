@@ -43,7 +43,7 @@ namespace Food.ViewModel
         }
 
         [RelayCommand]
-        async void AddProduct()
+        public async void AddProduct()
         {
             
             if (_name == null)
@@ -66,14 +66,16 @@ namespace Food.ViewModel
                 product.Salt = _salt;
                 product.Image = _image;
                 product.ProductType = _productType;
-                if (App.User.Type == "Admin" || App.User.Type == "Moderator")
+
+                var result = await productService.AddProduct(product);
+                if (result) {
+                    await Shell.Current.DisplayAlert("Udane!", $"Dodano pomyślnie", "OK");
+                }else
                 {
-                    
-                    var result = await productService.AddProduct(product);
-                    
+                    await Shell.Current.DisplayAlert("Error!", $"Nie dodano", "OK");
                 }
                 
-                await Shell.Current.DisplayAlert("Udane!", $"Dodano pomyślnie", "OK");
+                
             }
         }
     }

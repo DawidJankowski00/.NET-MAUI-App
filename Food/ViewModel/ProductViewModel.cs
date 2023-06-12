@@ -66,6 +66,7 @@ namespace Food.ViewModel
                 var products = await productService.GetProducts();
                 var relations = await componentProductService.GetRelations();
 
+                Products.Clear();
 
                 foreach (Product p in products)
                 {
