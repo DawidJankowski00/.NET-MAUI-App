@@ -57,7 +57,7 @@ namespace Food.ViewModel
                                 var component = await componentService.GetComponent(rel.ComponentId);
                                 if (component != null)
                                 {
-                                    user.BadComponents = new();
+                                    
                                     user.BadComponents.Add(component);
                                 }
                             }

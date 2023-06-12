@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
@@ -14,6 +15,7 @@ namespace Food.ViewModel
     public partial class AddComponentViewModel: BaseViewModel
     {
         ComponentService componentService = new();
+        UserComponentService userComponentService = new();
         public ObservableCollection<Model.Component> Components { get; set; } = new();
         IConnectivity connectivity;
         public AddComponentViewModel(IConnectivity connectivity) 
@@ -34,44 +36,25 @@ namespace Food.ViewModel
                     await Shell.Current.DisplayAlert("Brak połączenia z internetem!", $"Sprawdź polaczenie internetowe i spróbuj ponownie ", "OK");
                     return;
                 }
-
+                Components.Clear();
                 IsBusy = true;
                 var components = await componentService.GetComponents();
 
 
                 var activeComponents = App.User.BadComponents;
+                foreach (Model.Component component in components)
+                {
+                    Components.Add(component);
+
+                }
                 if (activeComponents != null)
                 {
-                    foreach (Model.Component component in components)
+                    foreach (Model.Component component in Components)
                     {
-                        foreach (Model.Component cmp in activeComponents)
+                        if (activeComponents.Contains(component))
                         {
-                            if (cmp.Name != null)
-                            {
-                                if (cmp.Name.ToLower() != component.Name.ToLower())
-                                {
-                                    if (Components.Contains(component) == false)
-                                    {
-                                        Components.Add(component);
-                                    }
-                                }
-                            }else
-                            {
-                                if (Components.Contains(component) == false)
-                                {
-                                    Components.Add(component);
-                                }
-                            }
+                            Components.Remove(component);
                         }
-
-                    }
-                }
-
-                foreach(Model.Component component in Components)
-                {
-                    if (activeComponents.Contains(component))
-                    {
-                        Components.Remove(component);
                     }
                 }
 
@@ -96,7 +79,23 @@ namespace Food.ViewModel
                 {
                     return;
                 }
-                App.User.BadComponents.Add(component);
+                if (App.User.BadComponents == null)
+                {
+                    List<Model.Component> tmp = new();
+                    tmp.Add(component);
+                    App.User.BadComponents = tmp;
+
+                }
+                else
+                {
+                    App.User.BadComponents.Add(component);
+                }
+
+                UserComponent rel = new();
+                rel.UserId = App.User.Id;
+                rel.ComponentId = component.Id;
+
+                await userComponentService.AddUserComponent(rel);
                 _ = GetComponentAsync();
                 await Shell.Current.DisplayAlert("Dodano", $"", "OK");
             }

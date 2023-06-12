@@ -34,6 +34,16 @@ namespace Food.Services
 
             return referencesList;
         }
+
+        public async Task<bool> AddUserComponent(UserComponent rel)
+        {
+            var response = await _httpClient.PostAsJsonAsync("https://restapi20230501204309.azurewebsites.net/api/UserComponents", rel);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
 }

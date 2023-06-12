@@ -39,14 +39,12 @@ namespace Food.Services
         {
             Component component = new();
 
-            var url = "https://restapi20230501204309.azurewebsites.net/api/Components/{id}";
-
+            var url = string.Format("https://restapi20230501204309.azurewebsites.net/api/Components/{0}", id);
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
             {
                 component = await response.Content.ReadFromJsonAsync<Component>();
-
             }
 
             return component;
