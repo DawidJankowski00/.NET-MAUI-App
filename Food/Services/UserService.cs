@@ -22,7 +22,7 @@ namespace Food.Services
         List<User> userList = new();
         public async Task<List<User>> GetUsers()
         {
-            var url = "https://restapi20230501204309.azurewebsites.net/api/Users";
+            var url = ApiConfig.BaseUrl + "/api/Users";
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
@@ -35,7 +35,7 @@ namespace Food.Services
 
         public async Task<bool> AddUser(User user)
         {
-            var response = await _httpClient.PostAsJsonAsync("https://restapi20230501204309.azurewebsites.net/api/Users", user);
+            var response = await _httpClient.PostAsJsonAsync(ApiConfig.BaseUrl + "/api/Users", user);
             if (response.IsSuccessStatusCode)
             {
                 return true;

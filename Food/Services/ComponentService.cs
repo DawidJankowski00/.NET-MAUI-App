@@ -22,7 +22,7 @@ namespace Food.Services
             if (componentList?.Count > 0)
                 return componentList;
 
-            var url = "https://restapi20230501204309.azurewebsites.net/api/Components";
+            var url = ApiConfig.BaseUrl + "/api/Components";
 
             var response = await _httpClient.GetAsync(url);
 
@@ -39,7 +39,7 @@ namespace Food.Services
         {
             Component component = new();
 
-            var url = string.Format("https://restapi20230501204309.azurewebsites.net/api/Components/{0}", id);
+            var url = string.Format(ApiConfig.BaseUrl + "/api/Components/{0}", id);
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)

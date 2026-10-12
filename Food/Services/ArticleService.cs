@@ -22,7 +22,7 @@ namespace Food.Services
             if (productList?.Count > 0)
                 return productList;
 
-            var url = "https://restapi20230501204309.azurewebsites.net/api/Articles";
+            var url = ApiConfig.BaseUrl + "/api/Articles";
 
             var response = await _httpClient.GetAsync(url);
 

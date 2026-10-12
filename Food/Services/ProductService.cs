@@ -22,7 +22,7 @@ namespace Food.Services
             if (productList?.Count > 0)
                 return productList;
 
-            var url = "https://restapi20230501204309.azurewebsites.net/api/Products";
+            var url = ApiConfig.BaseUrl + "/api/Products";
 
             var response = await _httpClient.GetAsync(url);
 
@@ -38,7 +38,7 @@ namespace Food.Services
         public async Task<bool> AddProduct(Product product)
         {
 
-            var response = await _httpClient.PostAsJsonAsync("https://restapi20230501204309.azurewebsites.net/api/Products", product);
+            var response = await _httpClient.PostAsJsonAsync(ApiConfig.BaseUrl + "/api/Products", product);
             if (response.IsSuccessStatusCode)
             {
                 return true;
